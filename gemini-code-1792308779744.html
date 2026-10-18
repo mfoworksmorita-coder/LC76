@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDJ76専用 BED KIT - LAND CRUISER 70</title>
+    <style>
+        /* --- Root Color Variables --- */
+        :root {
+            --bg-color: #f7f5f0;
+            --card-bg: #ffffff;
+            --card-border: #e6e2d8;
+            --accent-color: #bfa15f;
+            --btn-bg: #c8ab73;
+            --btn-hover: #b8975f;
+            --text-main: #1f2229;
+            --text-sub: #6b7280;
+            --font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 80px; 
+        }
+
+        /* --- Anti-Moire & Protection on Images --- */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: auto;
+            -ms-interpolation-mode: bicubic;
+            pointer-events: auto;
+            -webkit-user-drag: none;
+            user-select: none;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- Sticky Header --- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 245, 240, 0.95);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border-radius: 0 0 8px 8px;
+            flex-wrap: wrap;
+        }
+
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        .brand-name {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+
+        /* --- Quick Anchor Navigation & Icon Menu Button --- */
+        .menu-toggle-btn {
+            display: none;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            width: 42px;
+            height: 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .quick-nav {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .quick-nav a {
+            font-size: 0.75rem;
+            color: #8c7b65;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            white-space: nowrap;
+        }
+
+        .quick-nav a:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-tag {
+            font-size: 0.9rem;
+            color: #8c7b65;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            color: var(--text-sub);
+            font-size: clamp(0.95rem, 1.5vw, 1rem);
+            margin-bottom: 25px;
+            white-space: pre-line;
+        }
+
+        .hero-price-box {
+            margin-bottom: 25px;
+        }
+
+        .price {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .price-from {
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin-left: 4px;
+        }
+
+        .shipping-info {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        .buy-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--btn-bg);
+            color: #1f2229;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            width: fit-content;
+            box-shadow: 0 4px 12px rgba(200, 171, 115, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-2px);
+        }
+
+        .purchase-note {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-top: 12px;
+        }
+
+        .hero-img-container {
+            position: relative;
+            background-color: #f0ede6;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            cursor: zoom-in;
+        }
+
+        /* --- Section Dividers --- */
+        .section-header {
+            margin: 50px 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            color: var(--text-main);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .section-header .line {
+            flex: 1;
+            height: 1px;
+            background: var(--card-border);
+        }
+
+        /* --- Grid Layout & Cards --- */
+        .grid-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 66.66%;
+            overflow: hidden;
+            background-color: #f0ede6;
+        }
+
+        .card-img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            cursor: zoom-in;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.03);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: #8c7b65;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .card-text {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            white-space: pre-line;
+            flex: 1;
+        }
+
+        /* --- Spec Section --- */
+        .spec-section {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        .spec-img-container {
+            position: relative;
+            min-height: 320px;
+            background-color: #f0ede6;
+        }
+
+        .spec-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .spec-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .spec-title {
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+            color: var(--text-main);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--card-border);
+        }
+
+        .spec-group {
+            margin-bottom: 16px;
+        }
+
+        .spec-group-title {
+            font-size: 1rem;
+            color: #8c7b65;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .spec-text {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            white-space: pre-line;
+        }
+
+        /* --- Detailed Info & Customer Reviews Section --- */
+        .details-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: clamp(20px, 4vw, 40px);
+            margin-top: 50px;
+            margin-bottom: 40px;
+        }
+
+        .review-box {
+            background-color: #f7f5f0;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .review-box h4 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .review-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .review-card {
+            background: #fff;
+            padding: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--card-border);
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: #8c7b65;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .review-text {
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .feature-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .feature-badge-item {
+            background: #faf9f5;
+            border: 1px solid var(--card-border);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #8c7b65;
+        }
+
+        .desc-block {
+            margin-bottom: 20px;
+        }
+
+        .desc-block h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 6px;
+        }
+
+        .desc-block p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            white-space: pre-line;
+            line-height: 1.7;
+        }
+
+        /* --- Information Sections --- */
+        .info-sections-wrapper {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: clamp(20px, 3vw, 30px);
+        }
+
+        .info-card h3 {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--card-border);
+        }
+
+        .info-card p, .info-card li {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        .info-card ul {
+            padding-left: 18px;
+        }
+
+        /* --- Footer Area --- */
+        .site-footer {
+            margin-top: 60px;
+            padding: 30px 20px 40px 20px;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-link-btn {
+            background: none;
+            border: none;
+            color: #8c7b65;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 5px 10px;
+        }
+
+        .footer-link-btn:hover {
+            color: var(--text-main);
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+        }
+
+        /* --- Fixed Sticky Bottom Bar --- */
+        .sticky-bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid var(--card-border);
+            padding: 10px 20px;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bar-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bar-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .bar-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .bar-buy-btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Purchase Modal & Conversion Optimizations --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 15px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            max-width: 620px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid var(--card-border);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--text-sub);
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--text-main);
+        }
+
+        .purchase-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .option-card {
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 18px;
+            background-color: #faf9f5;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .option-card.recommended {
+            border: 2px solid var(--accent-color);
+            background-color: #fdfbf7;
+            box-shadow: 0 4px 15px rgba(191, 161, 95, 0.15);
+        }
+
+        .option-card.recommended:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(191, 161, 95, 0.25);
+        }
+
+        .recommended-ribbon {
+            position: absolute;
+            top: -12px;
+            right: 15px;
+            background-color: #bfa15f;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .option-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .option-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .option-price-large {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #bfa15f;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin: 6px 0;
+        }
+
+        .option-price-large .unit {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .original-price-strike {
+            font-size: 0.95rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+            margin-left: 6px;
+            font-weight: normal;
+        }
+
+        .discount-badge-bold {
+            background-color: #e53e3e;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .price-diff-note {
+            font-size: 0.82rem;
+            color: #6b5837;
+            background-color: #f5eedf;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-top: 10px;
+            line-height: 1.5;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .account-name-notice {
+            font-size: 0.78rem;
+            color: #8c7b65;
+            background-color: #f0ede6;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .bank-transfer-details {
+            display: none;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed var(--card-border);
+        }
+
+        .bank-transfer-details.active {
+            display: block;
+        }
+
+        /* Shipping Selection Buttons */
+        .shipping-selector-box {
+            margin: 12px 0;
+            background: #ffffff;
+            border: 1px solid var(--card-border);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .shipping-selector-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .shipping-btns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 8px;
+        }
+
+        .shipping-btn {
+            background-color: #faf9f5;
+            border: 1px solid var(--card-border);
+            padding: 8px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        .shipping-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .shipping-btn.active {
+            background-color: var(--btn-bg);
+            border-color: var(--btn-bg);
+            color: #1f2229;
+            font-weight: 700;
+        }
+
+        .shipping-notice {
+            font-size: 0.75rem;
+            color: #e53e3e;
+            margin-top: 6px;
+            line-height: 1.3;
+        }
+
+        /* Total Calculation Result Display */
+        .total-price-box {
+            background-color: #1f2229;
+            color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .total-price-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .total-price-val {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #c8ab73;
+        }
+
+        .step-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        /* Email Copy Row */
+        .email-copy-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+            background-color: #ffffff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--card-border);
+            width: fit-content;
+        }
+
+        .email-copy-btn {
+            background-color: var(--btn-bg);
+            color: #1f2229;
+            border: none;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .email-copy-btn:hover {
+            background-color: var(--btn-hover);
+        }
+
+        .template-box-wrapper {
+            position: relative;
+            margin-top: 8px;
+        }
+
+        .template-box {
+            background-color: #f0ede6;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            color: #333;
+            border: 1px solid var(--card-border);
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: var(--btn-bg);
+            color: #1f2229;
+            border: none;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--btn-hover);
+        }
+
+        .modal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .modal-table th, .modal-table td {
+            padding: 8px;
+            border-bottom: 1px solid var(--card-border);
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.9rem;
+        }
+
+        .modal-table th {
+            width: 35%;
+            color: #8c7b65;
+            font-weight: 600;
+        }
+
+        /* --- Lightbox Modal --- */
+        #lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #lightbox-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2.2rem;
+            cursor: pointer;
+            z-index: 3010;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+
+        /* --- Responsive Media Queries --- */
+        @media (max-width: 950px) {
+            .site-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .brand-left {
+                justify-content: space-between;
+                width: 100%;
+            }
+            .menu-toggle-btn {
+                display: flex;
+            }
+            .quick-nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 6px;
+                background-color: #faf9f5;
+                padding: 12px;
+                border-radius: 8px;
+                border: 1px solid var(--card-border);
+            }
+            .quick-nav.active {
+                display: flex;
+            }
+            .quick-nav a {
+                width: 100%;
+                text-align: center;
+            }
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+            .spec-section {
+                grid-template-columns: 1fr;
+            }
+            .sticky-bottom-bar {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+                padding: 10px;
+            }
+            .bar-info {
+                flex-direction: column;
+                gap: 2px;
+            }
+            .bar-buy-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sticky Header & Logo Bar with Shop Name and Mobile Menu Icon Only -->
+    <header class="site-header">
+        <div class="brand-left">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="Logo.jpg" alt="Logo" class="brand-logo" oncontextmenu="return false;" draggable="false">
+                <span class="brand-name">M-FO・車中泊ベッドキット</span>
+            </div>
+            <button class="menu-toggle-btn" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
+        </div>
+
+        <nav id="quick-nav-bar" class="quick-nav">
+            <a href="#section-hero" onclick="closeMenuMobile()">トップ</a>
+            <a href="#section-layout" onclick="closeMenuMobile()">レイアウト</a>
+            <a href="#section-storage" onclick="closeMenuMobile()">収納・ディテール</a>
+            <a href="#section-spec" onclick="closeMenuMobile()">構造・素材</a>
+            <a href="#section-details" onclick="closeMenuMobile()">商品説明・声</a>
+            <a href="#section-notes" onclick="closeMenuMobile()">注意事項</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="section-hero" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-tag">GDJ76専用 BED KIT</div>
+            <h1 class="hero-title">ランクル70の荷室を、<br>くつろげるフラット空間へ。</h1>
+            <p class="hero-desc">車中泊も、キャンプも、荷物の整理も。フルフラット設計とサイド収納スペースで、限られた車内空間をもっと自由に。</p>
+            
+            <div class="hero-price-box">
+                <div class="price">¥93,955<span class="price-from">から</span></div>
+                <div class="shipping-info">送料：別途 ¥3,000〜5,000（掲載ページ記載）</div>
+            </div>
+
+            <div>
+                <button class="buy-btn" onclick="openPurchaseModal()">
+                    購入手続きへ進む ↗
+                </button>
+                <div class="purchase-note">※メルカリShops購入または銀行振込（5%OFF）をお選びいただけます。</div>
+            </div>
+        </div>
+
+        <div class="hero-img-container">
+            <img src="1.jpg" alt="Preview" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+        </div>
+    </section>
+
+    <!-- Section 1: Layout Modes -->
+    <div id="section-layout" class="section-header">
+        <h2>レイアウトモード</h2>
+        <div class="line"></div>
+    </div>
+
+    <div class="grid-main">
+        <article class="card">
+            <div class="card-img-wrapper">
+                <img src="2.jpg" alt="Full Flat Mode" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Mode 01</div>
+                <h3 class="card-title">フルフラット仕様</h3>
+                <p class="card-text">車内をフルフラットな寝室へ。広々としたフラット空間で、大人2人でも快適に就寝・休憩できる車中泊仕様。</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-img-wrapper">
+                <img src="5.jpg" alt="Single Bed Mode" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Mode 02</div>
+                <h3 class="card-title">シングルベッドモード</h3>
+                <p class="card-text">後席の片側だけにマットを敷けば、快適なシングルベッドに早変わり！</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-img-wrapper">
+                <img src="6.jpg" alt="Side Table Mode" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Mode 03</div>
+                <h3 class="card-title">1席＋サイドテーブルモード</h3>
+                <p class="card-text">作業・休憩・荷物整理に。1人旅やソロキャンを快適に楽しむ車内空間。</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- Section 2: Storage & Details -->
+    <div id="section-storage" class="section-header">
+        <h2>収納＆ディテール</h2>
+        <div class="line"></div>
+    </div>
+
+    <div class="grid-main">
+        <article class="card">
+            <div class="card-img-wrapper">
+                <img src="3.jpg" alt="Trunk Storage" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Storage 01</div>
+                <h3 class="card-title">可変レイアウト&収納</h3>
+                <p class="card-text">後席上部マットは非使用時、中央下の床面に収納可能。キットで空間を仕切ることで、収納性が向上。</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-img-wrapper">
+                <img src="4.jpg" alt="Base Storage" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Storage 02</div>
+                <h3 class="card-title">ベースの収納空間</h3>
+                <p class="card-text">サイドマットをめくると、ベース下部のスペースを収納として活用可能。車内の整理整頓がよりスムーズに。</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-img-wrapper">
+                <img src="7.jpg" alt="Speaker Hole" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Feature</div>
+                <h3 class="card-title">スピーカーホール設計</h3>
+                <p class="card-text">ベースのスピーカー部分に六角形ホールを配置。音を遮ることなく、クリアなサウンドを響かせます。</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-img-wrapper">
+                <img src="8.jpg" alt="Backside Craftsmanship" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Craftsmanship</div>
+                <h3 class="card-title">裏面仕上げ</h3>
+                <p class="card-text">裏面は全周仕上げ済み、レザーの端や板材の露出なし。</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- Section 3: Spec & Quality -->
+    <div id="section-spec" class="section-header">
+        <h2>構造と素材のこだわり</h2>
+        <div class="line"></div>
+    </div>
+
+    <section class="spec-section">
+        <div class="spec-img-container">
+            <img src="9.jpg" alt="Structure Spec" class="zoomable-img" oncontextmenu="return false;" draggable="false">
+        </div>
+        <div class="spec-content">
+            <h3 class="spec-title">Quality & Structure</h3>
+            
+            <div class="spec-group">
+                <div class="spec-group-title">マット素材</div>
+                <div class="spec-text">・高耐荷重＆曲げに強い24mmマリン合板を採用。
+・板全体の防水コーティングにより、湿気によるカビの発生を防止。
+・寝心地のよい高密度ウレタンを採用、底付き感を軽減。
+・長持ちし、優れた耐摩耗性・耐汚性を誇る「マイクロファイバーレザー」を採用。</div>
+            </div>
+
+            <div class="spec-group">
+                <div class="spec-group-title">センターマットの耐荷重性能</div>
+                <div class="spec-text">・マットの中央に 75kg の荷物を置いた状態でも、たわみはわずか2.5mm。
+非常に優れた堅牢性と高い耐荷重性を実現しています。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Info & Customer Reviews -->
+    <section id="section-details" class="details-container">
+        
+        <div class="review-box">
+            <h4>＼ 購入者様から喜びの声が続々！ ／（お客様の声・新着順）</h4>
+            <div class="review-card-list">
+                
+                <div class="review-card">
+                    <div class="review-date">2026年9月27日</div>
+                    <div class="review-text">無理言って急なご対応にもかかわらず とても親切かつ、商品にも大満足です！ ありがとうございました！</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-date">2026年7月30日</div>
+                    <div class="review-text">また何かあればよろしくお願いします🙇</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-date">2026年7月30日</div>
+                    <div class="review-text">本日、取付させていただきました。 完璧です！ありがとうございました。</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-date">2026年7月30日</div>
+                    <div class="review-text">本日、取付させていただきました。 完璧です！ありがとうございました。</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-date">2026年7月26日</div>
+                    <div class="review-text">丁寧な対応をいただきとてもいい取引でした。まだ組み立てていませんが梱包もきっちりしておりきっと問題ないことと思います。ありがとうございました。</div>
+                </div>
+
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 12px;">ランクル70オーナーの皆様にご満足いただけるよう、品質はもちろん、丁寧な梱包・サポートまで徹底してお届けしています。</p>
+        </div>
+
+        <div class="feature-points">
+            <div class="feature-badge-item">▶ 即納可能・1〜2日以内に発送！</div>
+            <div class="feature-badge-item">▶ フルリクライニング対応</div>
+            <div class="feature-badge-item">▶ マット裏面仕上げ「無料」サービス</div>
+        </div>
+
+        <div class="desc-block">
+            <h3>【 適合車種 】</h3>
+            <p>ランドクルーザー70 再々販モデル（GDJ76）
+※後席移動キット非装着車のみ適合</p>
+        </div>
+
+        <div class="desc-block">
+            <h3>【 ベース構造 】</h3>
+            <p>全体に高強度かつ軽量化のアルミフレームを採用した強固なサポート構造に、サイドパネルを組み合わせた設計です。一人でも設置が可能な軽さでありながら、安定感もしっかりと確保しています。
+両サイドの独立スペースは荷物の整理整頓に役立ち、車内をよりすっきりと有効活用できます。</p>
+        </div>
+
+        <div class="desc-block">
+            <h3>【 マットのこだわり 】</h3>
+            <p>・センターマットの耐荷重性能について、天板の中央に 75kg の荷物を置いた状態でも、たわみはわずか2.5mm。非常に優れた堅牢性と高い耐荷重性を実現しており、安心してご使用いただけます。（中央に75kgを載せても、たわみはわずか2.5mm！）
+・表面素材には、通常のPU・PVCレザーよりも长持ちし、優れた耐摩耗性・耐汚性を誇る「マイクロファイバーレザー」の【プレミアムレザー】を採用しています。
+・寝心地のよい高密度ウレタンを採用、底付き感が出にくく、沈み込みすぎない適度な反発力で、起床時の身体の負担を軽減します。</p>
+        </div>
+
+        <div class="desc-block">
+            <h3>【 快適性・利便性 】</h3>
+            <p>トランク部分に製品を設置したままでもフルリクライニングが可能で、お車本来の機能性を損なうことはありません。
+マットは床面に格納できるため、ラゲッジスペースを状況に合わせて柔軟に活用可能です。
+左右どちらのシートでも、片側だけをベッドとして展開可能です。もう片側にはソファーのように腰掛けられるため、外の景色を眺めながら車内でコーヒーを飲んだり、読書を楽しんだりするリラックススペースとしても最適です。</p>
+        </div>
+
+        <div class="desc-block">
+            <h3>【 寸法・組み立て 】</h3>
+            <p>・奥行き：約178.8cm
+・幅：約120cm〜140cm
+・フレームは分解した状態でお届けいたします。分かりやすい組み立て図が付属しておりますので、ご参照のうえ組み立てをお願いいたします。</p>
+        </div>
+    </section>
+
+    <!-- Information Sections (Notices) -->
+    <div id="section-notes" class="info-sections-wrapper">
+        
+        <!-- Notice 1: ご使用時の注意事項 -->
+        <div class="info-card">
+            <h3>ご使用時の注意事項</h3>
+            <p><strong>【適合車種について】</strong><br>
+            ・本製品は GDJ76（ランドクルーザー70 再々販モデル）専用設計となっております。他の型式や車種には適合いたしませんので、ご購入前に必ず車両型式をご確認ください。<br>
+            ・※後席移動キット非装着車のみ適合となります。</p>
+            <br>
+            <p><strong>【安全上の注意】</strong><br>
+            ・走行中のベッドスペースの使用・就寝は大変危険ですのでおやめください。必ず停車中にご使用ください。<br>
+            ・設置後は各パーツがしっかり固定されているか確認してからご使用ください。</p>
+            <br>
+            <p><strong>【お手入れ方法】</strong><br>
+            ・マイクロファイバーレザー部分は、固く絞った柔らかい布で拭き取ってください。溶剤やアルコール類のご使用はお控えください。</p>
+        </div>
+
+        <!-- Notice 2: Mercari Shops Info -->
+        <div class="info-card">
+            <h3>メルカリShopsに関する注意事項</h3>
+            <ul>
+                <li>本Webサイトは製品の紹介ページであり、商品の販売および決済処理はすべて外部サービスである<strong>「メルカリShops」</strong>のプラットフォーム上で行われます（銀行振込を除く）。</li>
+                <li>購入手続き、決済方法、配送状況の確認、並びに取引に関するお問い合わせにつきましては、メルカリShopsの規定および規約に準拠いたします。</li>
+                <li>メルカリShopsでのご購入際には、メルカリアカウントでのログインが必要となります。</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer Area -->
+    <footer class="site-footer">
+        <img src="Logo.jpg" alt="Logo" class="footer-logo" oncontextmenu="return false;" draggable="false">
+
+        <div class="footer-links">
+            <button class="footer-link-btn" onclick="openModal('modal-tokusho')">特定商取引法に基づく表記</button>
+        </div>
+
+        <div class="copyright">
+            &copy; M-FO・車中泊ベッドキット. All Rights Reserved.
+        </div>
+    </footer>
+
+</div>
+
+<!-- Sticky Bottom Bar -->
+<div class="sticky-bottom-bar">
+    <div class="bar-info">
+        <div class="bar-title">GDJ76専用 BED KIT</div>
+        <div class="bar-price">¥93,955<span style="font-size: 0.85rem; font-weight: normal;">から</span></div>
+    </div>
+    <button class="buy-btn bar-buy-btn" onclick="openPurchaseModal()">
+        購入手続きへ进む ↗
+    </button>
+</div>
+
+<!-- Purchase Options Modal -->
+<div id="purchase-modal" class="modal-overlay" onclick="closeModalOnOuterClick(event, 'purchase-modal')">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title">ご購入方法の選択</div>
+            <button class="modal-close-btn" onclick="closePurchaseModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="purchase-options">
+                
+                <!-- Option 1: Bank Transfer -->
+                <div class="option-card recommended" onclick="toggleBankTransferDetails()">
+                    <div class="recommended-ribbon">一番人気・お得！</div>
+                    
+                    <div class="option-header-row">
+                        <div class="option-title">銀行振込で購入（直販）</div>
+                        <span class="discount-badge-bold">5% OFF 特別価格</span>
+                    </div>
+
+                    <div class="option-price-large">
+                        ¥93,955 <span class="unit">（本体価格・税込）</span>
+                        <span class="original-price-strike">¥98,900</span>
+                    </div>
+
+                    <div class="price-diff-note">
+                        💡 <strong>直販限定でお得な理由：</strong><br>
+                        メルカリShops等のシステム手数料が発生しないため、その分を直接還元した【5%割引価格】にてご提供いたします。
+                    </div>
+                    
+                    <div id="bank-details" class="bank-transfer-details">
+                        
+                        <!-- Dynamic Shipping Selector -->
+                        <div class="shipping-selector-box" onclick="event.stopPropagation()">
+                            <div class="shipping-selector-title">【お届け先地域（送料）を選択してください】</div>
+                            <div class="shipping-btns-grid">
+                                <button class="shipping-btn active" onclick="selectShipping('その他地域（本州・四国・九州）', 3000, this)">
+                                    その他地域<br>¥3,000
+                                </button>
+                                <button class="shipping-btn" onclick="selectShipping('北海道', 4000, this)">
+                                    北海道<br>¥4,000
+                                </button>
+                                <button class="shipping-btn" onclick="selectShipping('沖縄', 5000, this)">
+                                    沖縄<br>¥5,000
+                                </button>
+                            </div>
+                            <div class="shipping-notice">※一部離島へのお届けは配達エリア対象外です</div>
+                        </div>
+
+                        <!-- Total Payment Display -->
+                        <div class="total-price-box" onclick="event.stopPropagation()">
+                            <div class="total-price-label">お支払い合計金額（本体 + 送料）：</div>
+                            <div id="calc-total-price" class="total-price-val">¥96,955</div>
+                        </div>
+
+                        <div style="margin-bottom: 12px;">
+                            <span class="step-badge">STEP 1</span>
+                            <div style="font-size: 0.85rem; color: var(--text-main); font-weight: bold;">指定口座へのお振込み</div>
+                            <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 4px;">
+                                銀行名：〇〇銀行 〇〇支店<br>
+                                口座番号：（普通）1234567<br>
+                                口座名義：〇〇株式会社
+                            </p>
+                            <!-- Company Name vs Brand Name Explanation Box -->
+                            <div class="account-name-notice" onclick="event.stopPropagation()">
+                                💡 <strong>口座名義について：</strong><br>
+                                口座名義は運営会社である【〇〇株式会社】となります。「M-FO（エムフォー）」はショップ・ブランド名となりますので、お振込みの際はご注意ください。
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 12px;">
+                            <span class="step-badge">STEP 2</span>
+                            <div style="font-size: 0.85rem; color: var(--text-main); font-weight: bold;">テンプレートをコピーし、メールで必要事項を送信</div>
+                            <div class="email-copy-row" onclick="event.stopPropagation()">
+                                <span style="font-size: 0.85rem; color: var(--text-main); font-weight: bold;">mfoworksmorita@gmail.com</span>
+                                <button class="email-copy-btn" onclick="copyEmail(event)">コピー</button>
+                            </div>
+                        </div>
+
+                        <div class="template-box-wrapper" onclick="event.stopPropagation()">
+                            <button class="copy-btn" onclick="copyTemplate(event)">コピーする</button>
+                            <div id="email-template-text" class="template-box">件名：【銀行振込注文】GDJ76専用 BED KIT（お名前：〇〇 〇〇 様）
+
+【ご注文情報・お届け先】
+・お名前：
+・フリガナ：
+・郵便番号：
+・ご住所：
+・お電話番号：
+・お届け地域：その他地域（本州・四国・九州）
+・お支払い合計金額：¥96,955（本体¥93,955 + 送料¥3,000）
+・備考：
+
+【適合車種の確認】
+・ランドクルーザー70（GDJ76）再々販モデルですか？：（ はい / いいえ ）
+・後席移動キットは非装着ですか？：（ はい / いいえ ）</div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #8c7b65; margin-top: 8px;">※上の「コピーする」ボタンを押すと注文用テンプレートがコピーされます。件名の「〇〇 〇〇」をご自身のお名前に書き換えて、弊社メールアドレスまでお送りください。</p>
+                    </div>
+                </div>
+
+                <!-- Option 2: Mercari Shops -->
+                <div class="option-card" onclick="window.open('https://jp.mercari.com/shops/profile/7u5UWLaY6KRMDGwrbU7jhM', '_blank')">
+                    <div class="option-header-row">
+                        <div class="option-title" style="color: #6b7280;">メルカリShopsで購入 ↗</div>
+                    </div>
+                    <div class="option-price-large" style="color: #4b5563;">
+                        ¥98,900 <span class="unit">（税込・送料別途）</span>
+                    </div>
+                    <div class="option-desc">通常価格での販売となります。メルカリの安心・安全な決済システム（クレジットカード・コンビニ払い等）を利用してご購入いただけます。</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: 特定商取引法に基づく表記 -->
+<div id="modal-tokusho" class="modal-overlay" onclick="closeModalOnOuterClick(event, 'modal-tokusho')">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title">特定商取引法に基づく表記</div>
+            <button class="modal-close-btn" onclick="closeModal('modal-tokusho')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <table class="modal-table">
+                <tr>
+                    <th>販売事業者</th>
+                    <td>M-FO （エムフォー）</td>
+                </tr>
+                <tr>
+                    <th>代表者</th>
+                    <td>ショップ情報参照</td>
+                </tr>
+                <tr>
+                    <th>所在地</th>
+                    <td>請求があった場合、遅滞なく開示いたします。</td>
+                </tr>
+                <tr>
+                    <th>お問い合わせ</th>
+                    <td>メルカリShops上のショップ問い合わせフォーム、または弊社メールアドレスよりご連絡ください。</td>
+                </tr>
+                <tr>
+                    <th>販売価格</th>
+                    <td>各商品ページに表示（表示価格は消費税込み）</td>
+                </tr>
+                <tr>
+                    <th>商品代金以外の必要料金</th>
+                    <td>送料：別途 ¥3,000〜5,000（地域・掲載ページに記載）</td>
+                </tr>
+                <tr>
+                    <th>お支払い方法</th>
+                    <td>メルカリShops決済、または銀行振込</td>
+                </tr>
+                <tr>
+                    <th>商品の引き渡し時期</th>
+                    <td>ご注文・お支払い確認後、通常 3〜7 営業日以内に発送いたします。</td>
+                </tr>
+                <tr>
+                    <th>返品・交換・キャンセル</th>
+                    <td>商品に欠陥がある場合を除き、基本的には返品・交換に応じかねます。初期不良の場合は商品到着後7日以内にご連絡ください。</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox-modal">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" src="" alt="Zoomed Image" oncontextmenu="return false;">
+</div>
+
+<!-- JavaScript for Interactions, Copying & Mobile Menu -->
+<script>
+    const basePrice = 93955;
+    let currentShippingFee = 3000;
+    let currentRegionName = 'その他地域（本州・四国・九州）';
+
+    function selectShipping(regionName, fee, btnElement) {
+        const buttons = document.querySelectorAll('.shipping-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+
+        currentShippingFee = fee;
+        currentRegionName = regionName;
+        const total = basePrice + fee;
+
+        const formattedTotal = '¥' + total.toLocaleString();
+        const formattedFee = '¥' + fee.toLocaleString();
+
+        document.getElementById('calc-total-price').innerText = formattedTotal;
+
+        const templateBox = document.getElementById('email-template-text');
+        templateBox.innerText = `件名：【銀行振込注文】GDJ76専用 BED KIT（お名前：〇〇 〇〇 様）
+
+【ご注文情報・お届け先】
+・お名前：
+・フリガナ：
+・郵便番号：
+・ご住所：
+・お電話番号：
+・お届け地域：${regionName}
+・お支払い合計金額：${formattedTotal}（本体¥93,955 + 送料${formattedFee}）
+・備考：
+
+【適合車種の確認】
+・ランドクルーザー70（GDJ76）再々販モデルですか？：（ はい / いいえ ）
+・後席移動キットは非装着ですか？：（ はい / いいえ ）`;
+    }
+
+    function toggleMenu() {
+        const nav = document.getElementById('quick-nav-bar');
+        nav.classList.toggle('active');
+    }
+
+    function closeMenuMobile() {
+        const nav = document.getElementById('quick-nav-bar');
+        if (window.innerWidth <= 950) {
+            nav.classList.remove('active');
+        }
+    }
+
+    function openPurchaseModal() {
+        document.getElementById('purchase-modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePurchaseModal() {
+        document.getElementById('purchase-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function closeModalOnOuterClick(event, modalId) {
+        if (event.target.id === modalId) {
+            closeModal(modalId);
+        }
+    }
+
+    function toggleBankTransferDetails() {
+        const details = document.getElementById('bank-details');
+        details.classList.toggle('active');
+    }
+
+    function copyEmail(event) {
+        event.stopPropagation();
+        const email = 'mfoworksmorita@gmail.com';
+        navigator.clipboard.writeText(email).then(() => {
+            const btn = event.target;
+            btn.innerText = 'コピー完了！';
+            setTimeout(() => {
+                btn.innerText = 'コピー';
+            }, 2000);
+        });
+    }
+
+    function copyTemplate(event) {
+        event.stopPropagation();
+        const text = document.getElementById('email-template-text').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = event.target;
+            btn.innerText = 'コピー完了！';
+            setTimeout(() => {
+                btn.innerText = 'コピーする';
+            }, 2000);
+        });
+    }
+
+    const zoomableImages = document.querySelectorAll('.zoomable-img');
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    zoomableImages.forEach(img => {
+        img.addEventListener('click', function() {
+            lightboxImg.src = this.src;
+            lightboxModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeLightbox() {
+        lightboxModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    lightboxModal.addEventListener('click', function(e) {
+        if (e.target === lightboxModal) {
+            closeLightbox();
+        }
+    });
+</script>
+
+</body>
+</html>
